@@ -56,9 +56,9 @@ export default function Shop() {
     return <div className="  lg:p-10">
         <h2 className="text-3xl font-semibold">Shop</h2>
         <div className="flex flex-col mx-auto gap-8 mt-8 ">
-            <div className="flex flex-row justify-end gap-2 w-full">
-                <Input placeholder="Search for products" className="rounded-xl " />
-                <Button className="rounded-xl">Search</Button>
+            <div className="flex flex-row justify-end w-full  bg-gray-900 rounded-xl   overflow-hidden h-12 ">
+                <Input placeholder="Search for products" className=" border h-full focus:bg-gray-800  border-gray-900  " />
+                <Button className=" rounded-none h-full w-20">Search</Button>
             </div>
             <div className="w-full flex flex-col lg:flex-row gap-5 ">
 

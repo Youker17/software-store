@@ -5,6 +5,9 @@ import {
     HoverCardTrigger
 }
     from '@/components/ui/hover-card'
+import { toast } from '../ui/use-toast'
+import ctoast from '@/helpers/toast'
+import { ToastAction } from '../ui/toast'
 
 interface Props {
     data: {
@@ -33,10 +36,11 @@ interface Props {
 
 
 export default function SearchResult({ data = [], loading = true, error = false }: Props) {
+    
 
     return (
 
-        <div className="lg:px-10 h-full">
+        <div className="lg:pl-10 h-full">
             {loading && <div className="text-3xl h-full font-semibold  flex justify-center items-center">
                 <svg aria-hidden="true" className="w-10 h-10 mr-2 animate-spin text-gray-600 fill-blue-900" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
@@ -48,12 +52,11 @@ export default function SearchResult({ data = [], loading = true, error = false 
             {(data.length === 0 && !loading) && <img src={noresult.src} className='w-1/2 mx-auto' alt="" />}
 
             {(data.length > 0) && <div className="flex flex-col gap-4">
-                {data.map((item) => (
-                    <div className='bg-white text-black rounded-xl gap-8 w-full flex flex-col lg:flex-row p-5'>
+                {data.map((item,index) => (
+                    <div key={index} className='bg-white text-black rounded-xl gap-8 w-full flex flex-col lg:flex-row p-5'>
                         <div>
                             <img src="https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=700&h=456" className='w-40 h-40 rounded-xl' alt="" />
                         </div>
-
 
                         <div className='flex w-full flex-col justify-between'>
                             <h3 className='flex flex-row justify-between font-bold text-3xl'>{item.name}
@@ -61,12 +64,11 @@ export default function SearchResult({ data = [], loading = true, error = false 
                             <div className='w-fit'>
                             <HoverCard>
                                 <HoverCardTrigger className='text-sm'>By <span className='font-bold hover:underline '>@{item.lister.name}</span></HoverCardTrigger>
-
                                 <HoverCardContent className='rounded-xl backdrop-blur-3xl bg-black/80'>
                                     <span className='ml-3 flex flex-row gap-3 text-right items-center'>
                                         <img src="https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=700&h=456" className='rounded-full w-10 aspect-square object-cover border-white/40 border-2' />
-                                        By @{item.lister.name} {(item.lister.verified && <svg className="w-3 h-3 text-blue-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z" />
+                                        By @{item.lister.name} {(item.lister.verified && <svg className="w-3 h-3 text-yellow-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                                            <path stroke="currentColor" stroke-linecap="round" fill='yellow' stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z" />
                                         </svg>)}
                                     </span>
                                 </HoverCardContent>
@@ -79,8 +81,8 @@ export default function SearchResult({ data = [], loading = true, error = false 
                             <div className='flex flex-col lg:flex-row gap-3 justify-between '>
                                 <p className='font-bold text-xl text-gray-700'>{item.price}$</p>
                                 <div className='flex flex-row gap-3'>
-                                    <button className='border-gray-900 border-2 p-2 rounded-xl font-semibold'>Add to cart</button>
-                                    <button className='bg-gray-900 text-white p-2 rounded-xl font-semibold'>buy now</button>
+                                    <button onClick={e=>ctoast("added to cart",'you added this products to cart ->'+item.name, {action:(<ToastAction altText='hello' className='rounded-[10px]'>Undo</ToastAction>)})} className='border-gray-900 border-2 p-2 rounded-xl font-semibold'>Add to cart</button>
+                                    <button onClick={e=>ctoast("item bought",'you bought this products ->'+item.name)} className='bg-gray-900 text-white p-2 rounded-xl font-semibold'>buy now</button>
 
                                 </div>
                             </div>

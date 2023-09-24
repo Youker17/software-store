@@ -1,7 +1,7 @@
 import HeaderLink from "./HeaderLink"
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
 import Image from "next/image"
-import logo from "@/assets/logo.png"
+import logo from "@/assets/logo-cut.png"
 import { ScrollArea } from "../ui/scroll-area"
 import { Separator } from "../ui/separator"
 
@@ -12,10 +12,10 @@ import { Separator } from "../ui/separator"
 export default function Navbar() {
     return (
         <>
-            <div className="w-full border-b border-white/25  justify-between h-20 flex items-center">
+            <div className="w-full  backdrop-blur-3xl  justify-between h-20 flex items-center">
                 <div className="container flex flex-row w-full justify-between items-center">
                     <div className="flex flex-row items-center font-bold gap-2">
-                        <Image src={logo} alt="logo" className="w-10" />
+                        <Image src={logo} alt="logo" className="w-10  " />
                         <h3>CheapDigi</h3>
                     </div>
                     <div className="md:flex flex-row gap-10 hidden">
@@ -31,16 +31,16 @@ export default function Navbar() {
                             </svg>
                         </SheetTrigger>
 
-                        <SheetContent className="dark">
+                        <SheetContent className="w-fit">
                             <SheetHeader>
                                 <SheetTitle>Cart</SheetTitle>
                             </SheetHeader>
                             <SheetDescription className="">
                                 <ScrollArea className="h-[75vh] p-2">
                                     <div className="flex flex-col gap-4">
-                                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((item) => (
-                                            <div className="flex bg-white text-gray-900 rounded-xl p-3 flex-row gap-3">
-                                                <div className="w-20 h-20 aspect-square bg-gray-900 rounded-xl">photo</div>
+                                        {[1, 2, 3, 4, ].map((item) => (
+                                            <div key={item} className="flex bg-white text-gray-900 rounded-xl p-3 flex-row gap-3">
+                                                <img src="https://play-lh.googleusercontent.com/LLgnXnh4IrYUKFScaoX9p8j_yRj4sdXCisK0LsVLU9KrLRUNACGWtCNLOfpQtWK2W3w" className="w-20 h-20 aspect-square bg-gray-900 rounded-xl " alt="" />
                                                 <div className="flex flex-col justify-around gap-1 w-full">
                                                     <h3 className="font-bold text-lg">Product Name</h3>
                                                     <div className="flex flex-row justify-between w-full items-end">

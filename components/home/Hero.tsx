@@ -38,32 +38,39 @@ export default function Hero() {
                     <path d="m19.822 7.431-4.846-7A1 1 0 0 0 14.153 0H1a1 1 0 0 0-.822 1.569L4.63 8 .178 14.431A1 1 0 0 0 1 16h13.153a1.001 1.001 0 0 0 .823-.431l4.846-7a1 1 0 0 0 0-1.138Z" />
                 </svg>
             </button>
-            
+
             <Swiper
                 ref={swiperRef}
                 spaceBetween={50}
                 slidesPerView={1}
-                pagination={{ clickable: true,
+                pagination={{
+                    clickable: true,
                     type: "bullets",
                     dynamicBullets: true,
                 }}
-                autoplay={{ delay: 3000, disableOnInteraction:false }}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
                 modules={[Navigation, Pagination, Autoplay, EffectFade]}
                 loop={true}
                 className="h-full rounded-xl"
                 effect="fade"
-                
+
             >
                 <SwiperSlide>
                     <div className="h-full w-full flex flex-col justify-center items-center bg-red-400">
-                        <h1 className="text-white text-5xl font-bold">Welcome to CheapDigi1</h1>
-                        <p className="text-white text-xl">The best place to buy cheap digital products</p>
+                        <img className="absolute top-0 left-0 w-full h-full object-cover z-20" src="https://i.ytimg.com/vi/ZMak63mHq5Y/maxresdefault.jpg" alt="" />
+                        <div className="w-full h-full flex flex-col justify-center gap-3 p-10 bg-gradient-to-r from-black/90 via-black/25 to-black/0  z-30">
+                            <h1 className="text-white text-5xl font-bold ">Welcome to CheapDigi1</h1>
+                            <p className="text-white text-xl ">The best place to buy cheap digital products</p>
+                        </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="h-full w-full flex flex-col justify-center items-center bg-blue-400">
-                        <h1 className="text-white text-5xl font-bold">Welcome to CheapDigi</h1>
-                        <p className="text-white text-xl">The best place to buy cheap digital products</p>
+                        <img className="absolute top-0 left-0 w-full h-full object-cover z-20" src="https://www.thefusionbrand.com/wp-content/uploads/2022/07/facebook-ads-vs-google-ads-00-hero.jpeg" alt="" />
+                        <div className="w-full h-full flex flex-col justify-center gap-3 p-10 bg-gradient-to-r from-black/90 via-black/25 to-black/0   z-30">
+                            <h1 className="text-white text-5xl font-bold ">Welcome to CheapDigi1</h1>
+                            <p className="text-white text-xl ">The best place to buy cheap digital products</p>
+                        </div>
                     </div>
                 </SwiperSlide>
             </Swiper>
